@@ -110,7 +110,6 @@ src/
     presentation.tsx          presentation-mode context
     use-motion-preference.ts  hydration-safe reduced-motion hook
 docs/
-  PRESENTATION.md   the 3–5 minute talk track
   TECH_QA.md        likely technical questions, answered plainly
 ```
 
