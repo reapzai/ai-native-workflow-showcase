@@ -155,12 +155,20 @@ Beyond the commands, verify by looking:
 
 ---
 
-## Deployment
+## Delivery
 
-- One static route, deployed to Vercel from `main`.
+**This page is not deployed, and that is the decision.** The walkthrough is
+given from `npm run present` on localhost, so it cannot be broken by DNS, a
+certificate, a cold start or the network in the room. The public repository is
+what gets shared afterwards.
+
 - No environment variables, no secrets, no server runtime. A change that would
-  introduce any of the three is almost certainly the wrong change.
-- After deploying, open the production URL and scroll the whole page once.
+  introduce any of the three is almost certainly the wrong change — it would
+  also end the ability to run this from a laptop with the wifi off.
+- The app stays a static single route, so it can move to any static host later
+  without modification. Keep it that way.
+- Before any presentation: `npm run verify`, then `npm run present`, then
+  scroll the whole page once at 1920×1080.
 
 ---
 

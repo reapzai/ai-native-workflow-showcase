@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "present": "next build && next start",
+    "lint": "eslint",
+    "verify": "tsc --noEmit && eslint . && next build"
   },
   "dependencies": {
     "lucide-react": "^1.45.0",

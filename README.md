@@ -157,15 +157,21 @@ way to land on a section start.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+npm run present   # production build, then serve on http://localhost:3000
 ```
+
+`npm run dev` works too, but the presentation is given from the production
+build. It is deliberately **not deployed**: the walkthrough runs from
+localhost, so it cannot be affected by DNS, a certificate, a cold start or the
+wifi in the room. The repository is the link that gets shared afterwards.
+
+It is a static Next.js app with no server runtime, no environment variables and
+no secrets, so it can be put on any static host later without changes.
 
 ### Verification
 
 ```bash
-npx tsc --noEmit     # types
-npm run lint         # eslint
-npm run build        # production build
+npm run verify    # tsc --noEmit && eslint && next build
 ```
 
 All three pass. There is no automated test suite here, and that is a decision
