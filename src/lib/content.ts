@@ -294,7 +294,7 @@ export const FEATURED_PROJECT: Project = {
   language: "TypeScript",
   tagline: "Website und Mitglieder-Dashboard — seit März 2026 in Produktion.",
   body:
-    "Next.js 16 mit React 19 und TypeScript: Live-Auktionen mit Preisverlauf, Minecraft-Verifizierung über Discord-Login, ein rollenbasierter Clan-Bereich und Schutz gegen Mehrfach-Accounts. Die Zugriffsentscheidung fällt serverseitig gegen die Live-Rollenliste — und wenn diese Abfrage fehlschlägt, lautet die Antwort „kein Zugriff“, nicht „zeig alles“.",
+    "Live-Auktionen mit Preisverlauf, Minecraft-Verifizierung über Discord-Login, ein rollenbasierter Clan-Bereich. Fällt die Rollenabfrage aus, lautet die Antwort „kein Zugriff“ — nicht „zeig alles“.",
   stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind 4", "PostgreSQL", "NextAuth", "Redis", "vitest"],
   facts: [
     { label: "Commits", value: "800" },
@@ -314,7 +314,7 @@ export const PROJECTS: Project[] = [
     language: "Python",
     tagline: "Der Discord-Bot dahinter — seit Dezember 2025 durchgehend online.",
     body:
-      "Python und PostgreSQL: Tickets mit Transkript-Export, Auktions-Benachrichtigungen, Marktdaten — und ein Verleih-System, bei dem Mitglieder einander teure Ausrüstung leihen. Abgesichert über 2FA im Spiel und ein Buchungs-Register, das der Client nicht belügen kann.",
+      "Tickets, Auktions-Benachrichtigungen, Marktdaten — und ein Verleih-System, abgesichert über 2FA im Spiel und ein Buchungs-Register, das der Client nicht belügen kann.",
     stack: ["Python", "discord.py", "PostgreSQL", "asyncpg", "pytest"],
     facts: [
       { label: "Commits", value: "1.613" },
@@ -331,7 +331,7 @@ export const PROJECTS: Project[] = [
     language: "Java",
     tagline: "Die Spiel-Seite des Verleihs — Fabric-Mod für Minecraft 1.21.11.",
     body:
-      "Java 21: 2FA-Einstieg, Schutz gegen den versehentlichen Verlust geliehener Gegenstände, ein Dashboard im Spiel. Updates sind mit Ed25519 signiert und über eine Hash-Freigabeliste abgesichert — ein veränderter Build kommt gar nicht erst herein.",
+      "2FA-Einstieg, Schutz gegen den Verlust geliehener Gegenstände, Dashboard im Spiel. Updates sind Ed25519-signiert — ein veränderter Build kommt nicht herein.",
     stack: ["Java 21", "Fabric", "Mixin", "owo-lib", "Gradle"],
     facts: [
       { label: "Commits", value: "130" },
@@ -347,7 +347,7 @@ export const PROJECTS: Project[] = [
     language: "JavaScript",
     tagline: "Ein Minecraft-Client ohne Fenster, gesteuert aus Discord.",
     body:
-      "Node.js mit mineflayer: Clan-Chat weiterleiten, Spielerlisten lesen, im Spiel bezahlen. Jedes Modul läuft gekapselt — wirft eines zu oft einen Fehler, wird nur dieses abgeschaltet. Alle Aktionen laufen über eine priorisierte Warteschlange.",
+      "Clan-Chat, Spielerlisten, Zahlungen im Spiel. Jedes Modul läuft gekapselt, alle Aktionen über eine priorisierte Warteschlange.",
     stack: ["Node.js", "mineflayer", "HTTP-Control", "node:test"],
     facts: [
       { label: "Commits", value: "95" },
