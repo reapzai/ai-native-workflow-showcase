@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ *
+ * Near-black ground, warm off-white type, a single amber accent. The neutrals
+ * are warm rather than blue-grey — on a projector or in a screen share, cool
+ * greys go muddy while warm ones stay readable.
+ */
+@theme {
+  --color-ink-950: #09090a;
+  --color-ink-900: #0b0b0d;
+  --color-ink-850: #101012;
+  --color-ink-800: #151517;
+  --color-ink-700: #1c1c1f;
+  --color-ink-600: #26262a;
+
+  /*
+   * The dim end of the scale is lighter than a dark theme would normally need.
+   * This page is delivered through a compressed video stream, and the first
+   * thing compression eats is low-contrast detail — a label that reads fine
+   * locally can disappear entirely for the viewer. Nothing carrying text goes
+   * below roughly 4.5:1 against the ground.
+   */
+  --color-bone-50: #f4f1ea;
+  --color-bone-100: #e8e4db;
+  --color-bone-300: #b8b3a7;
+  --color-bone-500: #948f82;
+  --color-bone-600: #7d786e;
+  --color-bone-700: #5c584f;
+
+  --color-amber-accent: #d9a441;
+  --color-amber-soft: #e8c07d;
+  --color-amber-deep: #8a6420;
+
+  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono-code), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Hairlines. Two weights: structural and barely-there. Both a touch
+     stronger than they would be for a local screen — a 1px line at 9% simply
+     does not survive video encoding. */
+  --line: color-mix(in oklab, #f4f1ea 13%, transparent);
+  --line-soft: color-mix(in oklab, #f4f1ea 8%, transparent);
+
+  /* Glass is used in exactly two places, so that it stays meaningful. */
+  --glass: color-mix(in oklab, #f4f1ea 3%, transparent);
+}
+
+html {
+  /* Deliberately no global scroll-behavior:smooth — it fights fast wheel
+     scrolling and makes a live walkthrough feel laggy. Smoothness is opted
+     into per jump, in the presentation-mode navigation. */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink-900);
+  color: var(--color-bone-100);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* The ambient ground: two very soft, very large radial washes. Fixed, so they
+   never move with the scroll and never cost a repaint. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60rem 40rem at 78% -10%,
+      color-mix(in oklab, #d9a441 7%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      50rem 40rem at 4% 38%,
+      color-mix(in oklab, #5b6a7a 6%, transparent),
+      transparent 72%
+    );
+}
+
+::selection {
+  background: color-mix(in oklab, #d9a441 30%, transparent);
+  color: #f4f1ea;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------- utilities */
+
+/* Large display type: tight, optically corrected, never letter-spaced apart. */
+@utility display-xl {
+  font-size: clamp(2.75rem, 7.2vw, 6.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+}
+
+@utility display-lg {
+  font-size: clamp(2.1rem, 4.6vw, 3.75rem);
+  line-height: 1.03;
+  letter-spacing: -0.028em;
+  font-weight: 500;
+}
+
+@utility display-md {
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+/* The mono kicker that labels every section. */
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bone-500);
+}
+
+@utility lede {
+  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+  line-height: 1.62;
+  color: var(--color-bone-300);
+}
+
+/* Amber text that stays legible on near-black without glowing. */
+@utility accent {
+  color: var(--color-amber-soft);
+}
+
+/*
+ * Reduced motion.
+ *
+ * The React side adapts through `useMotionPreference` (hydration-safe), which
+ * collapses transitions to zero and swaps the sticky workflow sequence for a
+ * plain list. This block only has to neutralise CSS animation and smooth
+ * scrolling. Nothing is left sitting mid-transition.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
